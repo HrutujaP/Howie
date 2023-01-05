@@ -1,6 +1,8 @@
 # Created by https://www.gitignore.io/api/node,code,linux,macos,webstorm
 # Edit at https://www.gitignore.io/?templates=node,code,linux,macos,webstorm
 
+/backend
+
 ### Code ###
 .vscode/*
 !.vscode/settings.json

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:howie/constants.dart';
+import 'package:howie/screens/HomeScreen/homescreen.dart';
 import 'package:howie/screens/LandingScreen/landingscreen.dart';
 
 void main() {
@@ -20,8 +21,11 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      initialRoute: LandingScreen.id,
-      routes: {LandingScreen.id: (context) => LandingScreen()},
+      initialRoute: HomeScreen.id,
+      routes: {
+        LandingScreen.id: (context) => LandingScreen(),
+        HomeScreen.id: (context) => HomeScreen()
+      },
     );
   }
 }

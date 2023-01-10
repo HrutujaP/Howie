@@ -13,21 +13,21 @@ class LandingScreen extends StatelessWidget {
         child: Scaffold(
             body: Container(
       decoration: BoxDecoration(
-        color: kprimarycolor1,
+        color: ksecondarycolor1,
         gradient: LinearGradient(
           colors: [
-            kprimarycolor1,
-            kprimarycolor1,
-            kprimarycolor2,
-            kprimarycolor1,
-            kprimarycolor2,
-            kprimarycolor2,
-            kprimarycolor2,
-            kprimarycolor2,
-            kprimarycolor2,
-            // kprimarycolor1,
-            // kprimarycolor1,
-            kprimarycolor1,
+            ksecondarycolor1,
+            ksecondarycolor1,
+            ksecondarycolor2,
+            ksecondarycolor1,
+            ksecondarycolor2,
+            ksecondarycolor2,
+            ksecondarycolor2,
+            ksecondarycolor2,
+            ksecondarycolor2,
+            // ksecondarycolor1,
+            // ksecondarycolor1,
+            ksecondarycolor1,
           ],
           begin: Alignment.center,
           end: Alignment.bottomCenter,
@@ -57,7 +57,20 @@ class LandingScreen extends StatelessWidget {
                 width: MediaQuery.of(context).size.width,
                 child: Container(
                   decoration: BoxDecoration(
-                    color: kprimarycolor1,
+                    gradient: LinearGradient(
+                      colors: [
+                        ksecondarycolor1,
+                        ksecondarycolor1,
+                        ksecondarycolor1,
+                        ksecondarycolor2,
+                        ksecondarycolor2,
+                        ksecondarycolor1,
+                        ksecondarycolor1,
+                      ],
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                    ),
+                    color: ksecondarycolor1,
                     borderRadius: BorderRadius.only(
                       bottomLeft: Radius.circular(
                           MediaQuery.of(context).size.width * 0.1),
@@ -71,14 +84,22 @@ class LandingScreen extends StatelessWidget {
                     ),
                     child: Column(
                       children: [
-                        const Center(child: LandingVideoPlayer()),
+                        const Center(
+                            child: SizedBox(
+                          height: 200,
+                          width: 200,
+                          child: Image(
+                              fit: BoxFit.fill,
+                              image: AssetImage('assets/howie_icon.png')),
+                        )),
                         SizedBox(
                           height: MediaQuery.of(context).size.height * 0.01,
                         ),
                         Text(
                           'New Jump to Start',
                           style: TextStyle(
-                              color: kprimarycolor2,
+                              color: Colors.deepPurpleAccent,
+                              fontWeight: FontWeight.w700,
                               fontSize:
                                   MediaQuery.of(context).size.height * 0.03),
                         ),
@@ -86,14 +107,15 @@ class LandingScreen extends StatelessWidget {
                           'N\tL\tP',
                           style: TextStyle(
                               fontWeight: FontWeight.w700,
-                              color: kprimarycolor2,
+                              color: Colors.deepPurpleAccent,
                               fontSize:
                                   MediaQuery.of(context).size.height * 0.04),
                         ),
                         Text(
                           'Natural Language Processes',
                           style: TextStyle(
-                              color: kprimarycolor2,
+                              color: Colors.deepPurpleAccent,
+                              fontWeight: FontWeight.w700,
                               fontSize:
                                   MediaQuery.of(context).size.height * 0.028),
                         ),
@@ -104,32 +126,37 @@ class LandingScreen extends StatelessWidget {
                           'Get your queires answered',
                           style: TextStyle(
                               color: Colors.white,
+                              fontWeight: FontWeight.w700,
                               fontSize:
-                                  MediaQuery.of(context).size.height * 0.018),
+                                  MediaQuery.of(context).size.height * 0.02),
                         ),
                         Text(
                           'And your imaginations generated',
                           style: TextStyle(
                               color: Colors.white,
+                              fontWeight: FontWeight.w700,
                               fontSize:
-                                  MediaQuery.of(context).size.height * 0.018),
+                                  MediaQuery.of(context).size.height * 0.02),
                         ),
                         const Spacer(),
-                        const RotatedBox(
+                        RotatedBox(
                           quarterTurns: 3,
                           child: Icon(
                             (Icons.double_arrow_rounded),
-                            color: Colors.white,
+                            color: Colors.amberAccent.shade100,
                             size: 30,
                           ),
                         ),
-                        const RotatedBox(
+                        RotatedBox(
                           quarterTurns: 3,
                           child: Icon(
                             (Icons.double_arrow_rounded),
-                            color: Colors.white,
+                            color: Colors.amberAccent.shade100,
                             size: 30,
                           ),
+                        ),
+                        SizedBox(
+                          height: 20,
                         )
                       ],
                     ),
@@ -141,7 +168,7 @@ class LandingScreen extends StatelessWidget {
             Text(
               'Swipe to get Started',
               style: TextStyle(
-                  color: kprimarycolor1,
+                  color: ksecondarycolor1,
                   fontSize: 18,
                   fontWeight: FontWeight.bold),
             ),
@@ -180,7 +207,7 @@ class _LandingVideoPlayerState extends State<LandingVideoPlayer> {
   Widget build(BuildContext context) {
     return _controller.value.isInitialized
         ? SizedBox(
-            height: MediaQuery.of(context).size.width,
+            height: MediaQuery.of(context).size.height * 0.46,
             width: MediaQuery.of(context).size.width,
             child: ClipRRect(
               borderRadius: BorderRadius.circular(25),

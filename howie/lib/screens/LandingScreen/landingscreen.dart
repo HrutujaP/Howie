@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:howie/constants.dart';
+import 'package:howie/screens/HomeScreen/homescreen.dart';
 import 'package:video_player/video_player.dart';
 
 class LandingScreen extends StatelessWidget {
@@ -12,22 +13,16 @@ class LandingScreen extends StatelessWidget {
     return SafeArea(
         child: Scaffold(
             body: Container(
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         color: ksecondarycolor1,
         gradient: LinearGradient(
           colors: [
+            kprimarycolor1,
+            kprimarycolor1,
+            kprimarycolor2,
             ksecondarycolor1,
-            ksecondarycolor1,
-            ksecondarycolor2,
-            ksecondarycolor1,
             ksecondarycolor2,
             ksecondarycolor2,
-            ksecondarycolor2,
-            ksecondarycolor2,
-            ksecondarycolor2,
-            // ksecondarycolor1,
-            // ksecondarycolor1,
-            ksecondarycolor1,
           ],
           begin: Alignment.center,
           end: Alignment.bottomCenter,
@@ -39,7 +34,7 @@ class LandingScreen extends StatelessWidget {
         onVerticalDragUpdate: ((details) {
           int sen = 8;
           if (details.delta.dy < -sen) {
-            Navigator.pushNamed(context, LandingScreen.id);
+            Navigator.pushNamed(context, HomeScreen.id);
           }
         }),
         child: Column(
@@ -57,15 +52,14 @@ class LandingScreen extends StatelessWidget {
                 width: MediaQuery.of(context).size.width,
                 child: Container(
                   decoration: BoxDecoration(
-                    gradient: LinearGradient(
+                    gradient: const LinearGradient(
                       colors: [
-                        ksecondarycolor1,
-                        ksecondarycolor1,
+                        kprimarycolor1,
+                        kprimarycolor1,
+                        kprimarycolor2,
                         ksecondarycolor1,
                         ksecondarycolor2,
                         ksecondarycolor2,
-                        ksecondarycolor1,
-                        ksecondarycolor1,
                       ],
                       begin: Alignment.topLeft,
                       end: Alignment.bottomRight,
@@ -98,7 +92,7 @@ class LandingScreen extends StatelessWidget {
                         Text(
                           'New Jump to Start',
                           style: TextStyle(
-                              color: Colors.deepPurpleAccent,
+                              color: Colors.white,
                               fontWeight: FontWeight.w700,
                               fontSize:
                                   MediaQuery.of(context).size.height * 0.03),
@@ -107,14 +101,14 @@ class LandingScreen extends StatelessWidget {
                           'N\tL\tP',
                           style: TextStyle(
                               fontWeight: FontWeight.w700,
-                              color: Colors.deepPurpleAccent,
+                              color: Colors.white,
                               fontSize:
                                   MediaQuery.of(context).size.height * 0.04),
                         ),
                         Text(
                           'Natural Language Processes',
                           style: TextStyle(
-                              color: Colors.deepPurpleAccent,
+                              color: Colors.white,
                               fontWeight: FontWeight.w700,
                               fontSize:
                                   MediaQuery.of(context).size.height * 0.028),
@@ -143,7 +137,7 @@ class LandingScreen extends StatelessWidget {
                           quarterTurns: 3,
                           child: Icon(
                             (Icons.double_arrow_rounded),
-                            color: Colors.amberAccent.shade100,
+                            color: kprimarycolor1.withOpacity(0.5),
                             size: 30,
                           ),
                         ),
@@ -151,11 +145,11 @@ class LandingScreen extends StatelessWidget {
                           quarterTurns: 3,
                           child: Icon(
                             (Icons.double_arrow_rounded),
-                            color: Colors.amberAccent.shade100,
+                            color: kprimarycolor1.withOpacity(0.5),
                             size: 30,
                           ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 20,
                         )
                       ],
@@ -165,7 +159,7 @@ class LandingScreen extends StatelessWidget {
               ),
             ),
             const Spacer(),
-            Text(
+            const Text(
               'Swipe to get Started',
               style: TextStyle(
                   color: ksecondarycolor1,

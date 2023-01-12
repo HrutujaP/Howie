@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:howie/constants.dart';
 
+
 class HomeScreen extends StatelessWidget {
   static const id = 'homeScreen';
 
@@ -11,15 +12,16 @@ class HomeScreen extends StatelessWidget {
     return SafeArea(
         child: Scaffold(
       body: Container(
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           color: ksecondarycolor1,
           gradient: LinearGradient(
             colors: [
-              ksecondarycolor1,
+              kprimarycolor1,
+              kprimarycolor1,
+              kprimarycolor2,
               ksecondarycolor1,
               ksecondarycolor2,
-              ksecondarycolor1,
-              ksecondarycolor1
+              ksecondarycolor2,
             ],
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
@@ -59,10 +61,10 @@ class HomeScreen extends StatelessWidget {
                   decoration: BoxDecoration(
                       color: Colors.blueAccent,
                       gradient: const LinearGradient(colors: [
-                        Colors.purpleAccent,
-                        Colors.deepPurpleAccent,
-                        Colors.blueAccent,
-                        Colors.lightBlueAccent
+                        kprimarycolor1,
+                        kprimarycolor2,
+                        ksecondarycolor1,
+                        ksecondarycolor2,
                       ]),
                       borderRadius: BorderRadius.circular(
                           MediaQuery.of(context).size.width * 0.5)),
@@ -76,7 +78,7 @@ class HomeScreen extends StatelessWidget {
                   )),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 15,
               ),
               Material(

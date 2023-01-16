@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "642646715016",
+    "project_id": "howie-4fadb",
+    "storage_bucket": "howie-4fadb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:642646715016:android:41df6c9e483371f3f20d3d",
+        "android_client_info": {
+          "package_name": "com.howie"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "642646715016-lg2aqm8p7v88ecfmv53sstdlced94i3t.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAVfDafDbXT5ORq8dkdUwsv61Ks6zNaCxw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "642646715016-lg2aqm8p7v88ecfmv53sstdlced94i3t.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

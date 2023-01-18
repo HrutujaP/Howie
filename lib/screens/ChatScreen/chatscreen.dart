@@ -1,32 +1,47 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:howie/constants.dart';
 import 'package:howie/screens/ChatScreen/components/messagebubble.dart';
 import 'package:http/http.dart' as http;
+import 'package:cloud_firestore/cloud_firestore.dart';
+
+final _firestore = FirebaseFirestore.instance;
 
 class ChatScreen extends StatelessWidget {
   static const String id = 'chatScreen';
 
   ChatScreen({super.key});
 
+  final messageTextController = TextEditingController();
   late String query;
 
-  void sendQuery(String query) async {
-    var url = 'https://49.37.168.119:3000/message';
+  Future<String> sendQuery(String query) async {
+    print(query);
+    var url = 'https://howiebackend.onrender.com/api/query/message';
 
     var data = {'prompt': query};
-
     try {
-      http.post(Uri.parse(url),headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json'
-      }, body: jsonEncode(data)).then((response) {
+      String reply = await http
+          .post(Uri.parse(url),
+              headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+              },
+              body: jsonEncode(data))
+          .then((response) {
         print('Response status: ${response.statusCode}');
         print('Response body: ${response.body}');
+
+        String reply = jsonDecode(response.body)['message'];
+        reply = reply.replaceAll(RegExp(r"\t|\n"), "");
+
+        return reply;
       });
+
+      return reply;
     } catch (e) {
       print(e);
+      return 'Error';
     }
 
     // print(response.body);
@@ -73,7 +88,7 @@ class ChatScreen extends StatelessWidget {
                       ),
                     ),
                   ),
-                  const Spacer(),
+                  Spacer(),
                   const Text(
                     'Howie',
                     style: TextStyle(
@@ -100,9 +115,8 @@ class ChatScreen extends StatelessWidget {
               const SizedBox(
                 height: 10,
               ),
-              const MessageBubble(sender: 'Howie', text: 'Hellow', isMe: false),
-              const MessageBubble(sender: 'Me', text: 'Hii', isMe: true),
               const Spacer(),
+              MessagesStream(),
               Container(
                 decoration: kMessageContainerDecoration,
                 child: Row(
@@ -110,6 +124,7 @@ class ChatScreen extends StatelessWidget {
                   children: <Widget>[
                     Expanded(
                       child: TextField(
+                        controller: messageTextController,
                         onChanged: (value) {
                           query = value;
                         },
@@ -117,8 +132,29 @@ class ChatScreen extends StatelessWidget {
                       ),
                     ),
                     TextButton(
-                      onPressed: () {
-                        sendQuery(query);
+                      onPressed: () async {
+                        messageTextController.clear();
+                        _firestore
+                            .collection('users')
+                            .doc('6363850983')
+                            .collection('messages')
+                            .doc()
+                            .set({
+                          'isBot': false,
+                          'message': query,
+                          'time': DateTime.now()
+                        });
+                        String reply = await sendQuery(query);
+                        _firestore
+                            .collection('users')
+                            .doc('6363850983')
+                            .collection('messages')
+                            .doc()
+                            .set({
+                          'isBot': true,
+                          'message': reply,
+                          'time': DateTime.now()
+                        });
                       },
                       child: const Text(
                         'Send',
@@ -133,5 +169,55 @@ class ChatScreen extends StatelessWidget {
         ),
       ),
     ));
+  }
+}
+
+class MessagesStream extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return StreamBuilder<QuerySnapshot>(
+      stream: _firestore
+          .collection('users')
+          .doc('6363850983')
+          .collection('messages')
+          .orderBy('time')
+          .snapshots(),
+      builder: (context, snapshot) {
+        List<MessageBubble> messageBubbles = [];
+        if (!snapshot.hasData) {
+          return const Center(
+            child: CircularProgressIndicator(
+              backgroundColor: Colors.lightBlue,
+            ),
+          );
+        }
+        final messages = snapshot.data?.docs.reversed;
+        for (var message in messages!) {
+          try {
+            final messageText = message['message'] as String;
+            final messageSender = (message['isBot']) as bool;
+            print(messageText);
+
+            final messageBubble = MessageBubble(
+              sender: messageSender ? 'Howie' : 'You',
+              text: messageText,
+              isMe: messageSender,
+            );
+            messageBubbles.add(messageBubble);
+          } catch (E) {
+            print(E);
+          }
+        }
+
+        return Expanded(
+          flex: 100,
+          child: ListView(
+            children: messageBubbles,
+            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 20),
+            reverse: true,
+          ),
+        );
+      },
+    );
   }
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:howie/constants.dart';
 import 'package:howie/screens/HomeScreen/components/background.dart';
+import 'package:howie/screens/HomeScreen/components/slider.dart';
 
 class HomeScreen extends StatelessWidget {
   static const id = 'homeScreen';
@@ -33,18 +34,19 @@ class HomeScreen extends StatelessWidget {
                         child: Text(
                           'Try imaginative powers of the human',
                           softWrap: true,
-                          style: fontstyle(48),
+                          style: fontstyle(46),
                         ),
                       ),
                       Text(
                         'species',
-                        style: fontstyle(60, weight: FontWeight.w500)
+                        style: fontstyle(55, weight: FontWeight.w500)
                             .copyWith(letterSpacing: 4),
                       ),
                     ],
                   ),
                 ),
                 Spacer(),
+                SliderWidget(),
               ],
             ),
           )

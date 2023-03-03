@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/services.dart';
+import 'package:howie/screens/ChatScreen/chatscreen.dart';
 import 'package:howie/screens/HomeScreen/homescreen.dart';
 
 Future<void> main() async {
@@ -17,8 +18,9 @@ class MyApp extends StatelessWidget {
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: []);
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      initialRoute: HomeScreen.id,
+      initialRoute: ChatScreen.id,
       routes: {
+        ChatScreen.id : (context) => const ChatScreen(),
         HomeScreen.id: (context) => const HomeScreen(),
       },
     );

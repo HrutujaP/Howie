@@ -12,7 +12,7 @@ class Background extends StatelessWidget {
       height: double.infinity,
       width: double.infinity,
       child: ColorFiltered(
-        colorFilter: ColorFilter.mode(kColor4, BlendMode.exclusion),
+        colorFilter: ColorFilter.mode(kColor4, BlendMode.color),
         child: Image.asset(
           'assets/background.png',
           fit: BoxFit.cover,

@@ -27,7 +27,7 @@ class _SliderWidgetState extends State<SliderWidget> {
         color: kColor4,
         size: 40,
       ),
-      text: "Slide to regenerate . . .",
+      text: "Slide to regenerate ...",
       textStyle:
           fontstyle(16, weight: FontWeight.w500).copyWith(color: kColor2),
       // onSubmit: () {

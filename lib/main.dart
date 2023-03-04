@@ -1,3 +1,5 @@
+// ignore_for_file: depend_on_referenced_packages
+
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/services.dart';
@@ -21,7 +23,7 @@ class MyApp extends StatelessWidget {
       initialRoute: ChatScreen.id,
       routes: {
         ChatScreen.id : (context) => const ChatScreen(),
-        HomeScreen.id: (context) => const HomeScreen(),
+        HomeScreen.id: (context) =>  HomeScreen(),
       },
     );
   }
